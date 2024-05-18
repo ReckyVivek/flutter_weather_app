@@ -3,89 +3,92 @@ import 'dart:convert';
 
 class WeatherModel {
   final double currentTemp;
-  final String currrentSky; 
-  final String currrentPressure; 
-  final String currrentWindSpeed; 
-  final String currrentHumidity; 
+  final String currentSky;
+  final double currentPressure;
+  final double currentWindSpeed;
+  final double currentHumidity;
   WeatherModel({
     required this.currentTemp,
-    required this.currrentSky,
-    required this.currrentPressure,
-    required this.currrentWindSpeed,
-    required this.currrentHumidity,
+    required this.currentSky,
+    required this.currentPressure,
+    required this.currentWindSpeed,
+    required this.currentHumidity,
   });
 
-
   // final data = snapshot.data!;
-
-
+  //
 
   WeatherModel copyWith({
     double? currentTemp,
-    String? currrentSky,
-    String? currrentPressure,
-    String? currrentWindSpeed,
-    String? currrentHumidity,
+    String? currentSky,
+    double? currentPressure,
+    double? currentWindSpeed,
+    double? currentHumidity,
   }) {
     return WeatherModel(
       currentTemp: currentTemp ?? this.currentTemp,
-      currrentSky: currrentSky ?? this.currrentSky,
-      currrentPressure: currrentPressure ?? this.currrentPressure,
-      currrentWindSpeed: currrentWindSpeed ?? this.currrentWindSpeed,
-      currrentHumidity: currrentHumidity ?? this.currrentHumidity,
+      currentSky: currentSky ?? this.currentSky,
+      currentPressure: currentPressure ?? this.currentPressure,
+      currentWindSpeed: currentWindSpeed ?? this.currentWindSpeed,
+      currentHumidity: currentHumidity ?? this.currentHumidity,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'currentTemp': currentTemp,
-      'currrentSky': currrentSky,
-      'currrentPressure': currrentPressure,
-      'currrentWindSpeed': currrentWindSpeed,
-      'currrentHumidity': currrentHumidity,
+      'currentSky': currentSky,
+      'currentPressure': currentPressure,
+      'currentWindSpeed': currentWindSpeed,
+      'currentHumidity': currentHumidity,
     };
   }
 
   factory WeatherModel.fromMap(Map<String, dynamic> map) {
-
-  final currentWeatherData = map['list'][0];
-
+    final currentWeatherData = map['list'][0];
+    // double currentTemp = currentWeatherData['main']['temp'] - 273.15;
+    // String currentSky = currentWeatherData['weather'][0]['main'];
+    // final pressure = currentWeatherData['main']['pressure'];
+    // final humidity = currentWeatherData['main']['humidity'];
+    // final double wspeed = currentWeatherData['wind']['speed'];
+    // currentTemp = double.parse(currentTemp.toStringAsFixed(1));
     return WeatherModel(
-      currentTemp: (currentWeatherData['main']['temp']) - 273,
-      currrentSky: currentWeatherData['weather'][0]['main'],
-      currrentPressure: currentWeatherData['main']['pressure'],
-      currrentWindSpeed: currentWeatherData['wind']['speed'],
-      currrentHumidity: currentWeatherData['main']['humidity'],
+      currentTemp: double.parse(
+          (currentWeatherData['main']['temp'] - 273.15).toStringAsFixed(1)),
+      currentSky: currentWeatherData['weather'][0]['main'],
+      currentPressure: currentWeatherData['main']['pressure'],
+      currentWindSpeed: currentWeatherData['wind']['speed'],
+      currentHumidity: currentWeatherData['main']['humidity'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory WeatherModel.fromJson(String source) => WeatherModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory WeatherModel.fromJson(String source) =>
+      WeatherModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'WeatherModel(currentTemp: $currentTemp, currrentSky: $currrentSky, currrentPressure: $currrentPressure, currrentWindSpeed: $currrentWindSpeed, currrentHumidity: $currrentHumidity)';
+    return 'WeatherModel(currentTemp: $currentTemp, currentSky: $currentSky, currentPressure: $currentPressure, currentWindSpeed: $currentWindSpeed, currentHumidity: $currentHumidity)';
   }
 
   @override
   bool operator ==(covariant WeatherModel other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.currentTemp == currentTemp &&
-      other.currrentSky == currrentSky &&
-      other.currrentPressure == currrentPressure &&
-      other.currrentWindSpeed == currrentWindSpeed &&
-      other.currrentHumidity == currrentHumidity;
+
+    return other.currentTemp == currentTemp &&
+        other.currentSky == currentSky &&
+        other.currentPressure == currentPressure &&
+        other.currentWindSpeed == currentWindSpeed &&
+        other.currentHumidity == currentHumidity;
   }
 
   @override
   int get hashCode {
     return currentTemp.hashCode ^
-      currrentSky.hashCode ^
-      currrentPressure.hashCode ^
-      currrentWindSpeed.hashCode ^
-      currrentHumidity.hashCode;
+        currentSky.hashCode ^
+        currentPressure.hashCode ^
+        currentWindSpeed.hashCode ^
+        currentHumidity.hashCode;
   }
 }

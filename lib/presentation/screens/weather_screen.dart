@@ -54,14 +54,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
           final data = state.weatherModel;
 
-          double currentTemp = data.currentTemp;
-          String currentSky = data.currrentSky;
-          final currentPressure = data.currrentPressure;
-          final currentHumidity = data.currrentHumidity;
-          final currentWindSpeed = data.currrentWindSpeed;
+          final currentTemp = data.currentTemp;
+          final currentSky = data.currentSky;
+          final currentPressure = data.currentPressure;
+          final currentHumidity = data.currentHumidity;
+          final currentWindSpeed = data.currentWindSpeed;
           
-          currentTemp = double.parse(currentTemp.toStringAsFixed(1));
-
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -150,6 +148,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 //     },
                 //   ),
                 // ),
+
                 const SizedBox(
                   height: 20,
                 ),

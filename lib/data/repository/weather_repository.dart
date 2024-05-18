@@ -4,9 +4,9 @@ import 'package:weather_app/models/weather_model.dart';
 
 class WeatherRepository {
   final WeatherDataProvider weatherDataProvider;
-  WeatherRepository(
-    this.weatherDataProvider,
-  );
+
+  WeatherRepository({required this.weatherDataProvider});
+  
   Future<WeatherModel> getCurrentWeather() async {
     try {
       String cityName = 'Bhopal';

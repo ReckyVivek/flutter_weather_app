@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => WeatherRepository(WeatherDataProvider()),
+      create: (context) => WeatherRepository(weatherDataProvider: WeatherDataProvider()),
       child: BlocProvider(
         create: (context) => WeatherBloc(
           context.read<WeatherRepository>(),
